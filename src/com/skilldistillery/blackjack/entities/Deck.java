@@ -73,7 +73,7 @@ public class Deck {
 		int ace1or11 = 0;
 		
 		for (Card acard : this.cards) {
-			switch(acard.getValue()) {
+			switch(acard.getRank()) {
 			case TWO: 	totalValue += 2; break;
 			case THREE: totalValue += 3; break;
 			case FOUR: 	totalValue += 4; break;

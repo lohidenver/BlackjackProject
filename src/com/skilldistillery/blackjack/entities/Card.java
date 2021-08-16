@@ -51,6 +51,8 @@ public class Card {
 	public int getValue() {				//returns card rank
 		return rank.getValue();
 	}
-
+	public Rank getRank() {				//returns card rank
+		return this.rank;
+	}
 	
 }//End Card Class

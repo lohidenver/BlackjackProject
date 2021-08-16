@@ -29,8 +29,8 @@ public class BlackjackApp {
 		playingDeck.shuffle();
 		//System.out.println(playingDeck);
 		
-		Deck playerD = new Deck();
-		Deck dealerD = new Deck();
+		Deck playerHand = new Deck();
+		Deck dealerHand = new Deck();
 		
 		double betMoney = 20.00;
 		//Scanner sc = new Scanner(System.in);
@@ -46,28 +46,28 @@ public class BlackjackApp {
 				break;
 			}
 			
-			playerD.draw(playingDeck);
-			playerD.draw(playingDeck);
-			dealerD.draw(playingDeck);
-			dealerD.draw(playingDeck);
+			playerHand.draw(playingDeck);
+			playerHand.draw(playingDeck);
+			dealerHand.draw(playingDeck);
+			dealerHand.draw(playingDeck);
 			
 			boolean roundOver = false;
 			
 			while(true) {
 				System.out.println(playerName + "'s hand: ");
-				System.out.print(playerD.toString());
-				System.out.println(playerName + "'s deck is valued at: " + playerD.cardsValue());
+				System.out.print(playerHand.toString());
+				System.out.println("\n" +playerName + "'s deck is valued at: " + playerHand.cardsValue());
 				
-				System.out.println("Dealer's hand: [hidden] + " + dealerD.getCard(0).toString());
+				System.out.println("Dealer's hand: [hidden] + " + dealerHand.getCard(0).toString());
 			
 				System.out.println("What would you like to do?\n1. Hit\n2. Stand");
 				int choice = sc.nextInt();
 				if(choice==1) {
-					playerD.draw(playingDeck);
+					playerHand.draw(playingDeck);
 					System.out.println(playerName + " drew a " + 
-					playerD.getCard(playerD.checkDeckSize()-1).toString());
-					if (playerD.cardsValue() > 21) {
-						System.out.println("You busted. You went " + (playerD.cardsValue()-21) 
+					playerHand.getCard(playerHand.checkDeckSize()-1).toString());
+					if (playerHand.cardsValue() > 21) {
+						System.out.println("You busted. You went " + (playerHand.cardsValue()-21) 
 								+ " over" );
 						betMoney -= playerBet;
 						roundOver=true;
@@ -80,33 +80,33 @@ public class BlackjackApp {
 				}
 			}
 			
-			System.out.println("Dealer Cards: " + dealerD.toString());
+			System.out.println("Dealer Cards: " + dealerHand.toString());
 			
-			if ((dealerD.cardsValue()>=17) &&  (dealerD.cardsValue()>playerD.cardsValue() && roundOver == false)) {
+			if ((dealerHand.cardsValue()>=17) &&  (dealerHand.cardsValue()>playerHand.cardsValue() && roundOver == false)) {
 				System.out.println("Dealer wins.");
 				betMoney -= playerBet;
 				roundOver=true;
 			}
 			
-			while (dealerD.cardsValue()<17 && roundOver ==false) {
-				dealerD.draw(playingDeck);
+			while (dealerHand.cardsValue()<17 && roundOver ==false) {
+				dealerHand.draw(playingDeck);
 				System.out.println("Dealer Draws: " + 
-				dealerD.getCard(dealerD.checkDeckSize()-1).toString());
+				dealerHand.getCard(dealerHand.checkDeckSize()-1).toString());
 			}
 			
-			System.out.println("Dealer has " + dealerD.cardsValue());
-			if((dealerD.cardsValue()>21) && roundOver == false) {
+			System.out.println("Dealer has " + dealerHand.cardsValue());
+			if((dealerHand.cardsValue()>21) && roundOver == false) {
 				System.out.println("Dealer busts! " + playerName + " wins!");
 				betMoney += playerBet;
 				roundOver =true;
 			}
 			
-			if((playerD.cardsValue() == dealerD.cardsValue()) && roundOver == false) {
+			if((playerHand.cardsValue() == dealerHand.cardsValue()) && roundOver == false) {
 				System.out.println("Push");
 				roundOver = true;
 			}
 			
-			if ((playerD.cardsValue()>dealerD.cardsValue())&& roundOver == false ) {
+			if ((playerHand.cardsValue()>dealerHand.cardsValue())&& roundOver == false ) {
 				System.out.println(playerName + " wins!");
 				betMoney += playerBet;
 				roundOver = true;
@@ -117,8 +117,8 @@ public class BlackjackApp {
 			}
 			
 			
-			playerD.moveAll(playingDeck);
-			dealerD.moveAll(playingDeck);
+			playerHand.moveAll(playingDeck);
+			dealerHand.moveAll(playingDeck);
 			
 			System.out.println("End of hand");
 		}
