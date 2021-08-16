@@ -46,11 +46,16 @@ public class GameLoop {
 			boolean roundOver = false;
 			
 		while(true) {
-			System.out.println(playerName + "'s hand: ");
+			System.out.println("\n" + playerName + "'s hand: ");
 			System.out.print(playerHand.toString());
 			System.out.println("\n" +playerName + "'s deck is valued at: " + playerHand.cardsValue());
-			
-			System.out.println("Dealer's hand: [hidden] + " + dealerHand.getCard(0).toString());
+			if(playerHand.cardsValue() == 21 && roundOver ==false) {
+				System.out.println("Blackjack! " + playerName + " wins!");
+				betMoney += playerBet;
+				roundOver =true;
+				
+			}
+			System.out.println("\nDealer's hand: \n" + dealerHand.getCard(0).toString() + "\n[hidden]\n ");
 		
 			System.out.println("What would you like to do?\n1. Hit\n2. Stand");
 			int choice = sc.nextInt();
@@ -60,7 +65,7 @@ public class GameLoop {
 				playerHand.getCard(playerHand.checkDeckSize()-1).toString());
 				if (playerHand.cardsValue() > 21) {
 					System.out.println("You busted. You went " + (playerHand.cardsValue()-21) 
-							+ " over" );
+							+ " over.\n" );
 					betMoney -= playerBet;
 					roundOver=true;
 					break;
@@ -72,7 +77,7 @@ public class GameLoop {
 			}
 		}
 		
-		System.out.println("Dealer Cards: " + dealerHand.toString());
+		System.out.println("\nDealer Cards: " + dealerHand.toString());
 		
 		if ((dealerHand.cardsValue()>=17) &&  (dealerHand.cardsValue()>playerHand.cardsValue() && roundOver == false)) {
 			System.out.println("Dealer wins.");
@@ -112,7 +117,7 @@ public class GameLoop {
 		playerHand.moveAll(playingDeck);
 		dealerHand.moveAll(playingDeck);
 		
-		System.out.println("End of hand");
+		System.out.println("End of hand\n");
 	}
 	
 	System.out.println("You are broke! Maybe you can sell a kidney?");

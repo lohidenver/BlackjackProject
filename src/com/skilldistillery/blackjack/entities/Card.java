@@ -52,7 +52,7 @@ public class Card {
 		return rank.getValue();
 	}
 	public Rank getRank() {				//returns card rank
-		return this.rank;
+		return rank;
 	}
 	
 }//End Card Class
