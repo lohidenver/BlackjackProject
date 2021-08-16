@@ -51,7 +51,7 @@ public class Dealing {
 		      System.out.println(card);
 		    }
 		    System.out.println("Total value: " + value);
+		    System.out.println(hand);
 		  }
-
 }
 // End Dealing
