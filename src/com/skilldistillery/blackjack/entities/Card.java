@@ -3,12 +3,12 @@ package com.skilldistillery.blackjack.entities;
 import java.util.Objects;
 
 public class Card {
-	private Rank rank;
-	private Suit suit;
+	private Rank rank; //Ace->King
+	private Suit suit; //♥ ♠ ♣ ♦
 	
-	public Card(Rank rank, Suit suit) {
-		this.rank = rank;
-		this.suit = suit;
+	public Card(Rank rank, Suit suit) { //Card Constructor
+		this.rank = rank; //Ace->King
+		this.suit = suit; //♥ ♠ ♣ ♦
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class Card {
 		return rank + " of " + suit;
 	}
 
-	public int getValue() {
+	public int getValue() {				//returns card rank
 		return rank.getValue();
 	}
 
